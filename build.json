@@ -1,0 +1,12 @@
+{
+	"id": "gallery2019",
+	"version": "1.0.0",
+	"description": "Image Gallery with Bootstrap Layout",
+	"categories": [
+		"gallery",
+		"images",
+		"design"
+	],
+	"compatible_from": "2018.4",
+	"dependencies" : []
+}
