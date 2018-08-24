@@ -3,7 +3,7 @@ use Gallery2019\Gallery;
 
 $acl = new ACL();
 ?>
-<?php if($acl->hasPermission("gallery_create")){?>
+<?php if($acl->hasPermission("galleries_create")){?>
 <p>
 	<a href="<?php echo ModuleHelper::buildActionURL("gallery_create");?>"
 		class="btn btn-primary"><?php translate("create_gallery");?></a>
