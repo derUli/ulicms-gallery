@@ -8,5 +8,7 @@
 		"design"
 	],
 	"compatible_from": "2018.4",
-	"dependencies" : []
+	"dependencies" : [
+		"lightbox2"
+	]
 }
