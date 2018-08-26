@@ -11,10 +11,11 @@ class Lightbox2Controller extends Controller
         $cssFile = ModuleHelper::buildRessourcePath(self::MODULE_NAME, "js/lightbox2/css/lightbox.min.css");
         echo Style::FromExternalFile($cssFile);
     }
-	
-	public function adminHead(){
-		$this->head();
-	}
+
+    public function adminHead()
+    {
+        $this->head();
+    }
 
     public function frontendFooter()
     {
@@ -30,7 +31,9 @@ class Lightbox2Controller extends Controller
         
         combinedScriptHtml();
     }
-		public function adminFooter(){
-		$this->frontendFooter();
-	}
+
+    public function adminFooter()
+    {
+        $this->frontendFooter();
+    }
 }

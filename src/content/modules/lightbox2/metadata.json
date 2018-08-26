@@ -5,6 +5,6 @@
 	"shy": false,
 	"main_class": "Lightbox2Controller",
 	"controllers": {
-		"Lightbox2Controller": "controllers/Lightbox2Controller.php"	
+		"Lightbox2Controller": "controllers/Lightbox2Controller.php"
 	}
 }
