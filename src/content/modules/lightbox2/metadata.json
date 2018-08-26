@@ -1,0 +1,10 @@
+{
+	"version": "2.10.0",
+	"source": "extend",
+	"embed": false,
+	"shy": false,
+	"main_class": "Lightbox2Controller",
+	"controllers": {
+		"Lightbox2Controller": "controllers/Lightbox2Controller.php"	
+	}
+}
