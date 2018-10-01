@@ -1,6 +1,7 @@
 <?php
 use Gallery2019\Gallery;
 use Gallery2019\Image;
+use UliCMS\Exceptions\FileNotFoundException;
 
 class GalleryImageController extends Controller
 {
