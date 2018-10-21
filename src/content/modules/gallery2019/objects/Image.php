@@ -5,7 +5,6 @@ use Model;
 use Database;
 use Path;
 use StringHelper;
-use NotImplementedException;
 
 class Image extends Model
 {

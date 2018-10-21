@@ -3,7 +3,6 @@ namespace Gallery2019;
 
 use Model;
 use Database;
-use NotImplementedException;
 use Exception;
 
 class Gallery extends Model
