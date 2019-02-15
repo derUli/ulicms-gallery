@@ -9,11 +9,8 @@ if ($id and $model->getID()) {
 <h1><?php translate("edit_gallery");?></h1>
 <p>
 	<a
-		href="<?php
-    
-    echo ModuleHelper::buildAdminURL("gallery2019");
-    ?>"
-		class="btn btn-default"><?php translate("back");?></a>
+		href="<?php echo ModuleHelper::buildAdminURL("gallery2019");?>"
+		class="btn btn-default"><i class="fa fa-arrow-left"></i> <?php translate("back");?></a>
 </p>
 <?php if(Request::getVar("save")){?>
 <div class="alert alert-success alert-dismissable fade in">
@@ -30,14 +27,14 @@ if ($id and $model->getID()) {
 		required>
 </p>
 <p>
-	<button type="submit" class="btn btn-primary"><?php translate("save");?></button>
+	<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> <?php translate("save");?></button>
 </p>
 <?php echo ModuleHelper::endForm()?>
 <h2><?php translate("images")?></h2>
 <p>
 	<a
 		href="<?php echo ModuleHelper::buildActionURL("gallery_image_add", "gallery_id={$model->getId()}");?>"
-		class="btn btn-default"><?php translate("add_image");?></a>
+		class="btn btn-default"><i class="fa fa-plus"></i> <?php translate("add_image");?></a>
 </p>
 
 <table class="tablesorter">

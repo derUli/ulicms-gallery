@@ -6,7 +6,7 @@ $acl = new ACL();
 <?php if($acl->hasPermission("galleries_create")){?>
 <p>
 	<a href="<?php echo ModuleHelper::buildActionURL("gallery_create");?>"
-		class="btn btn-primary"><?php translate("create_gallery");?></a>
+		class="btn btn-primary"><i class="fa fa-plus"></i> <?php translate("create_gallery");?></a>
 </p>
 <?php }?>
 

@@ -11,15 +11,11 @@ $gallery_id = $isEdit ? $model->getGalleryId() : Request::getVar("gallery_id", n
 <h1><?php translate($isEdit ? "edit_image" : "add_image");?></h1>
 <p>
 	<a
-		href="<?php
-
-echo ModuleHelper::buildActionURL("gallery_edit", "id={$gallery_id}");
-?>"
-		class="btn btn-default"><?php translate("back");?></a>
+		href="<?php echo ModuleHelper::buildActionURL("gallery_edit", "id={$gallery_id}");?>"
+		class="btn btn-default"><i class="fa fa-arrow-left"></i> <?php translate("back");?></a>
 </p>
 
 <?php
-
 echo ModuleHelper::buildMethodCallForm("GalleryImageController", $isEdit ? "edit" : "create");
 ?>
 
@@ -48,7 +44,7 @@ echo $order->render($model->getOrder());
 ?>
 
 <p>
-	<button type="submit" class="btn btn-primary"><?php translate($isEdit ? "edit_image" : "add_image"); ?></button>
+	<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> <?php translate($isEdit ? "edit_image" : "add_image"); ?></button>
 </p>
 <?php echo ModuleHelper::endForm()?>
 
