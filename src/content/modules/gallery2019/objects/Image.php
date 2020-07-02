@@ -8,7 +8,6 @@ use StringHelper;
 
 class Image extends Model
 {
-
     private $gallery_id;
 
     private $path;

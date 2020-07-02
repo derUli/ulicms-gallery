@@ -4,51 +4,50 @@ use Gallery2019\Gallery;
 $id = Request::getVar("id", 0, "int");
 $model = new Gallery($id);
 if ($id and $model->getID()) {
-    $images = $model->getImages();
-    ?>
-<h1><?php translate("edit_gallery");?></h1>
+    $images = $model->getImages(); ?>
+<h1><?php translate("edit_gallery"); ?></h1>
 <p>
 	<a
-		href="<?php echo ModuleHelper::buildAdminURL("gallery2019");?>"
-		class="btn btn-default"><i class="fa fa-arrow-left"></i> <?php translate("back");?></a>
+		href="<?php echo ModuleHelper::buildAdminURL("gallery2019"); ?>"
+		class="btn btn-default"><i class="fa fa-arrow-left"></i> <?php translate("back"); ?></a>
 </p>
-<?php if(Request::getVar("save")){?>
+<?php if (Request::getVar("save")) {?>
 <div class="alert alert-success alert-dismissable fade in">
 	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		<?php translate("changes_was_saved")?>
 		</div>
-<?php }?>
-<?php echo ModuleHelper::buildMethodCallForm("GalleryController", "edit");?>
+<?php } ?>
+<?php echo ModuleHelper::buildMethodCallForm("GalleryController", "edit"); ?>
 
-<input type="hidden" name="id" value="<?php esc($id);?>">
+<input type="hidden" name="id" value="<?php esc($id); ?>">
 <p>
 	<strong><?php translate("title")?></strong> <br /> <input type="text"
-		name="title" maxlength="200" value="<?php esc($model->getTitle());?>"
+		name="title" maxlength="200" value="<?php esc($model->getTitle()); ?>"
 		required>
 </p>
 <p>
-	<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> <?php translate("save");?></button>
+	<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> <?php translate("save"); ?></button>
 </p>
 <?php echo ModuleHelper::endForm()?>
 <h2><?php translate("images")?></h2>
 <p>
 	<a
-		href="<?php echo ModuleHelper::buildActionURL("gallery_image_add", "gallery_id={$model->getId()}");?>"
-		class="btn btn-default"><i class="fa fa-plus"></i> <?php translate("add_image");?></a>
+		href="<?php echo ModuleHelper::buildActionURL("gallery_image_add", "gallery_id={$model->getId()}"); ?>"
+		class="btn btn-default"><i class="fa fa-plus"></i> <?php translate("add_image"); ?></a>
 </p>
 
 <table class="tablesorter">
 	<thead>
 		<tr>
-			<th><?php translate("position");?></th>
-			<th><?php translate("image");?></th>
-			<th><?php translate("description");?></th>
+			<th><?php translate("position"); ?></th>
+			<th><?php translate("image"); ?></th>
+			<th><?php translate("description"); ?></th>
 			<td></td>
 			<td></td>
 		</tr>
 	</thead>
 	<tbody>
-	<?php foreach($images as $image){?>
+	<?php foreach ($images as $image) {?>
 	<tr>
 			<td class="text-right"><?php esc($image->getOrder());?></td>
 			<td data-sort-value="<?php esc($image->getPath());?>"><img
@@ -73,8 +72,8 @@ if ($id and $model->getID()) {
 
 <?php
 } else {
-    noperms();
-}
+            noperms();
+        }
 ?>
 <?php
 $translation = new JSTranslation();

@@ -4,7 +4,6 @@ use UliCMS\Exceptions\FileNotFoundException;
 
 class GalleryController extends Controller
 {
-
     public function createPost()
     {
         $gallery = new Gallery();

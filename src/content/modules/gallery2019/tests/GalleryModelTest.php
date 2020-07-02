@@ -4,12 +4,12 @@ use Gallery2019\Image;
 
 class GalleryModelTest extends \PHPUnit\Framework\TestCase
 {
-
-    public function tearDown()
+    protected function tearDown(): void
     {
         Database::query("delete from `{prefix}gallery` where title like 'Test - %'", true);
     }
-
+    
+    
     public function testCreateEditAndDeleteGallery()
     {
         $this->assertEquals(0, count(Gallery::getAll()));
@@ -19,6 +19,7 @@ class GalleryModelTest extends \PHPUnit\Framework\TestCase
         $firstUser = $users[0];
         
         $gallery = new Gallery();
+        $gallery->delete();
         $this->assertNull($gallery->getID());
         $title = "Test - Created at " . time();
         $gallery->setTitle($title);
@@ -40,7 +41,6 @@ class GalleryModelTest extends \PHPUnit\Framework\TestCase
         
         $newTitle = "Test - Updated at " . time();
         $gallery->setTitle($newTitle);
-        
         $gallery->save();
         
         $this->assertEquals(1, count(Gallery::getAll()));
@@ -136,5 +136,17 @@ class GalleryModelTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($imageOk->getGalleryId(), $firstImage->getGalleryId());
         
         $gallery->delete();
+    }
+    public function testGetImagesReturnsEmptyArray()
+    {
+        $gallery = new Gallery();
+        $this->assertCount(0, $gallery->getImages());
+    }
+    
+    public function testAddImageThrowsException()
+    {
+        $this->expectException(Exception::class);
+        $gallery = new Gallery();
+        $gallery->addImage("foo");
     }
 }

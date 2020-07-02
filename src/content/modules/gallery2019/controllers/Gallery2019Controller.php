@@ -4,7 +4,6 @@ use UliCMS\HTML\Style;
 
 class Gallery2019Controller extends Controller
 {
-
     public const MODULE_NAME = "gallery2019";
 
     public function uninstall()

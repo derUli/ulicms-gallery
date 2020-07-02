@@ -7,7 +7,6 @@ use Exception;
 
 class Gallery extends Model
 {
-
     private $title;
 
     private $created;
@@ -82,9 +81,6 @@ class Gallery extends Model
 
     protected function update()
     {
-        if (! $this->getID()) {
-            return;
-        }
         $this->setUpdated(time());
         $sql = "update `{prefix}gallery` set
                 title = ?,

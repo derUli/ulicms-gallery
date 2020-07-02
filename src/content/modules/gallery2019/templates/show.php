@@ -6,7 +6,7 @@ $imageColWidth = 3;
 ?>
 <div class="gallery">
 	<div class="row">
-    	<?php foreach($images as $image){?>
+    	<?php foreach ($images as $image) {?>
 		  <div class="col-md-<?php esc($imageColWidth);?>">
 			<div class="thumbnail">
 				<a href="<?php esc($image->getPath());?>"
@@ -20,8 +20,7 @@ $imageColWidth = 3;
         
         $gridCount += $imageColWidth;
         if ($gridCount >= 12) {
-            $gridCount = 0;
-            ?>
+            $gridCount = 0; ?>
 	    </div>
 
 	<div class="row">

@@ -5,7 +5,6 @@ use UliCMS\Exceptions\FileNotFoundException;
 
 class GalleryImageController extends Controller
 {
-
     public function createPost()
     {
         $gallery_id = Request::getVar("gallery_id", null, "int");
