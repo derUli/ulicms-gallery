@@ -1,7 +1,7 @@
 // this shows a thumbnail of the selected file on text inputs with
-// kcfinder image uploader attached
+// fm image uploader attached
 function refreshFieldThumbnails() {
-	$("input.kcfinder[data-kcfinder-type=images]").each(
+	$("input.fm[data-fm-type=images]").each(
 			function(index, element) {
 				var id = $(element).attr("name");
 				if ($(element).val().length > 0) {
@@ -15,15 +15,15 @@ function refreshFieldThumbnails() {
 
 $(function() {
 	refreshFieldThumbnails();
-	$("input.kcfinder")
+	$("input.fm")
 			.on(
 					"click",
 					function(event) {
 						var field = $(event.target);
-						var name = $(field).data("kcfinder-name") ? $(field)
-								.data("kcfinder-name") : "kcfinder_textbox";
-						var type = $(field).data("kcfinder-type") ? $(field)
-								.data("kcfinder-type") : "images"
+						var name = $(field).data("fm-name") ? $(field)
+								.data("fm-name") : "fm_textbox";
+						var type = $(field).data("fm-type") ? $(field)
+								.data("fm-type") : "images"
 
 						window.KCFinder = {
 							callBack : function(url) {
@@ -34,7 +34,7 @@ $(function() {
 						};
 						window
 								.open(
-										'kcfinder/browse.php?type=' + type,
+										'fm/browse.php?type=' + type,
 										name,
 										'status=0, toolbar=0, location=0, menubar=0, directories=0, '
 												+ 'resizable=1, scrollbars=0, width=800, height=600');
