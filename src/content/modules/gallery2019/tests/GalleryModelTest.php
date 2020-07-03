@@ -9,7 +9,6 @@ class GalleryModelTest extends \PHPUnit\Framework\TestCase
         Database::query("delete from `{prefix}gallery` where title like 'Test - %'", true);
     }
     
-    
     public function testCreateEditAndDeleteGallery()
     {
         $this->assertEquals(0, count(Gallery::getAll()));
@@ -147,6 +146,6 @@ class GalleryModelTest extends \PHPUnit\Framework\TestCase
     {
         $this->expectException(Exception::class);
         $gallery = new Gallery();
-        $gallery->addImage("foo");
+        $gallery->addImage(new Image());
     }
 }

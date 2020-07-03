@@ -1,10 +1,13 @@
 <?php
+
+declare(strict_types=1);
+
 use Gallery2019\Gallery;
 use UliCMS\Exceptions\FileNotFoundException;
 
 class GalleryController extends Controller
 {
-    public function createPost()
+    public function createPost(): void
     {
         $gallery = new Gallery();
         $gallery->setTitle(Request::getVar("title"));
@@ -15,7 +18,7 @@ class GalleryController extends Controller
         Response::redirect(ModuleHelper::buildActionURL("gallery_edit", "id={$id}"));
     }
 
-    public function editPost()
+    public function editPost(): void
     {
         $id = Request::getVar("id", 0, "int");
         $title = Request::getVar("title", "", "str");
@@ -29,7 +32,7 @@ class GalleryController extends Controller
         }
     }
 
-    public function delete()
+    public function delete(): void
     {
         $id = Request::getVar("id", 0, "int");
         if (! $id) {

@@ -1,38 +1,46 @@
 <?php
+
+declare(strict_types=1);
+
 use Gallery2019\Gallery;
-use UliCMS\HTML\Style;
 
 class Gallery2019Controller extends Controller
 {
     public const MODULE_NAME = "gallery2019";
 
-    public function uninstall()
+    public function uninstall(): void
     {
-        $migrator = new DBMigrator("module/{self::MODULE_NAME}", ModuleHelper::buildModuleRessourcePath(self::MODULE_NAME, "sql/down"));
+        $migrator = new DBMigrator(
+            "module/{self::MODULE_NAME}",
+            ModuleHelper::buildModuleRessourcePath(
+                    self::MODULE_NAME,
+                    "sql/down"
+                )
+        );
         $migrator->rollback();
     }
 
-    public function getSettingsLinkText()
+    public function getSettingsLinkText(): string
     {
         return get_translation("edit");
     }
 
-    public function getSettingsHeadline()
+    public function getSettingsHeadline(): string
     {
         return get_translation("galleries");
     }
 
-    public function settings()
+    public function settings(): string
     {
         return Template::executeModuleTemplate(self::MODULE_NAME, "gallery/list.php");
     }
 
-    public function contentFilter($htmlInput)
+    public function contentFilter(string $htmlInput): string
     {
         preg_match_all("/\[gallery=([0-9]+)]/", $htmlInput, $match);
-        
+
         if (count($match) > 0) {
-            for ($i = 0; $i < count($match[0]); $i ++) {
+            for ($i = 0; $i < count($match[0]); $i++) {
                 $placeholder = $match[0][$i];
                 $id = unhtmlspecialchars($match[1][$i]);
                 $gallery = new Gallery(intval($id));
@@ -41,7 +49,7 @@ class Gallery2019Controller extends Controller
                 $htmlInput = str_replace($placeholder, $html, $htmlInput);
             }
         }
-        
+
         return $htmlInput;
     }
 }

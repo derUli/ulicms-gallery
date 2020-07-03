@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Gallery2019;
 
 use Model;
@@ -35,8 +38,8 @@ class Gallery extends Model
             $this->title = $result->title;
             $this->created = strtotime($result->created);
             $this->updated = strtotime($result->updated);
-            $this->createdby = $result->createdby;
-            $this->lastchangedby = $result->lastchangedby;
+            $this->createdby = intval($result->createdby);
+            $this->lastchangedby = intval($result->lastchangedby);
         } else {
             $this->setID(null);
             $this->title = null;
@@ -101,47 +104,47 @@ class Gallery extends Model
         Database::pQuery($sql, $args, true);
     }
 
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    public function setTitle($val)
+    public function setTitle(?string $val): void
     {
-        $this->title = ! is_null($val) ? strval($val) : null;
+        $this->title = $val;
     }
 
-    public function getCreated()
+    public function getCreated():?int
     {
         return $this->created;
     }
 
-    public function setCreated($val)
+    public function setCreated(?int $val): void
     {
-        $this->created = is_numeric($val) ? intval($val) : null;
+        $this->created = $val;
     }
 
-    public function getUpdated()
+    public function getUpdated(): ?int
     {
         return $this->updated;
     }
 
-    public function setUpdated($val)
+    public function setUpdated(?int $val)
     {
-        $this->updated = is_numeric($val) ? intval($val) : null;
+        $this->updated = $val;
     }
 
-    public function getCreatedBy()
+    public function getCreatedBy():?int
     {
         return $this->createdby;
     }
 
-    public function setCreatedBy($val)
+    public function setCreatedBy(?int $val)
     {
-        $this->createdby = is_numeric($val) ? intval($val) : null;
+        $this->createdby = $val;
     }
 
-    public function getLastChangedBy()
+    public function getLastChangedBy(): ?int
     {
         return $this->lastchangedby;
     }
@@ -151,7 +154,7 @@ class Gallery extends Model
         $this->lastchangedby = is_numeric($val) ? intval($val) : null;
     }
 
-    public function delete()
+    public function delete(): void
     {
         if (! $this->getID()) {
             return;
@@ -164,9 +167,9 @@ class Gallery extends Model
         $this->fillVars(null);
     }
 
-    public function getImages()
+    public function getImages(): array
     {
-        $result = array();
+        $result = [];
         if (! $this->getID()) {
             return $result;
         }
@@ -181,7 +184,7 @@ class Gallery extends Model
         return $result;
     }
 
-    public function addImage($image)
+    public function addImage(Image $image): void
     {
         if (! $this->getID()) {
             throw new Exception("The Gallery must be saved before you can add images");
@@ -190,9 +193,9 @@ class Gallery extends Model
         $image->save();
     }
 
-    public static function getAll()
+    public static function getAll(): array
     {
-        $result = array();
+        $result = [];
         $sql = "select id from `{prefix}gallery` order by id";
         $query = Database::query($sql, true);
         while ($row = Database::fetchObject($query)) {
