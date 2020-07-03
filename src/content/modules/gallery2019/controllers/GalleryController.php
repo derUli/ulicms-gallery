@@ -53,9 +53,14 @@ class GalleryController extends Controller
 
     public function delete(): void
     {
+        $id = Request::getVar("id", 0, "int");
         $model = $this->_delete();
         if ($model) {
-            Response::redirect(ModuleHelper::buildAdminURL(Gallery2019Controller::MODULE_NAME));
+            Response::redirect(
+                ModuleHelper::buildAdminURL(
+                        Gallery2019Controller::MODULE_NAME
+                    )
+            );
         } else {
             throw new FileNotFoundException("No gallery with id {$id}");
         }

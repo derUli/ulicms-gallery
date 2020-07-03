@@ -51,4 +51,3 @@ echo $order->render($model->getOrder());
 <?php
 enqueueScriptFile(ModuleHelper::buildRessourcePath("gallery2019", "js/backend.js"));
 combinedScriptHtml();
-?>
