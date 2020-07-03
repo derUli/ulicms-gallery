@@ -1,9 +1,12 @@
 <?php
 
-class GalleryControllerTest extends \PHPUnit\Framework\TestCase
+include_once dirname(__FILE__) . "/../Gallery2019BaseTest.php";
+
+class GalleryControllerTest extends Gallery2019BaseTest
 {
     protected function setUp(): void
     {
+        parent::setUp();
         $manager = new UserManager();
         $users = $manager->getAllUsers();
         $firstUser = $users[0];
@@ -17,7 +20,7 @@ class GalleryControllerTest extends \PHPUnit\Framework\TestCase
     {
         $_POST = [];
         $_SESSION = [];
-        Database::query("delete from `{prefix}gallery` where title like 'Test - %'", true);
+        parent::tearDown();
     }
 
     public function testCreatePost()

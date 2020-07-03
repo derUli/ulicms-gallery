@@ -1,13 +1,16 @@
 <?php
 
+include_once dirname(__FILE__) . "/../Gallery2019BaseTest.php";
+
 use Gallery2019\Gallery;
 
-class GalleryImageControllerTest extends \PHPUnit\Framework\TestCase
+class GalleryImageControllerTest extends Gallery2019BaseTest
 {
     private $gallery = null;
 
     protected function setUp(): void
     {
+        parent::setUp();
         $manager = new UserManager();
         $users = $manager->getAllUsers();
         $firstUser = $users[0];
@@ -26,9 +29,9 @@ class GalleryImageControllerTest extends \PHPUnit\Framework\TestCase
 
     protected function tearDown(): void
     {
+        parent::tearDown();
         $_POST = [];
         $_SESSION = [];
-        Database::query("delete from `{prefix}gallery` where title like 'Test - %'", true);
     }
 
     public function testCreatePost()
@@ -74,7 +77,7 @@ class GalleryImageControllerTest extends \PHPUnit\Framework\TestCase
         $_POST["path"] = "foo.jpg";
         $_POST["description"] = "Hello World";
         $_POST["id"] = $controller->_createPost();
-        
+
         $this->assertTrue($controller->_delete());
     }
 

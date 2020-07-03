@@ -3,12 +3,15 @@
 use Gallery2019\Gallery;
 use Spatie\Snapshots\MatchesSnapshots;
 
-class Gallery2019ControllerTest extends \PHPUnit\Framework\TestCase
+include_once dirname(__FILE__) . "/../Gallery2019BaseTest.php";
+
+class Gallery2019ControllerTest extends Gallery2019BaseTest
 {
     use MatchesSnapshots;
 
     protected function setUp(): void
     {
+        parent::setUp();
         include_once getLanguageFilePath("en");
         Translation::loadAllModuleLanguageFiles("en");
         $manager = new UserManager();
@@ -23,13 +26,7 @@ class Gallery2019ControllerTest extends \PHPUnit\Framework\TestCase
     protected function tearDown(): void
     {
         $_SESSION = [];
-        Database::query("delete from `{prefix}gallery` where title like 'Test - %'", true);
-    }
-
-    public function testGetSettingsLinkText()
-    {
-        $controller = new Gallery2019Controller();
-        $this->assertMatchesTextSnapshot($controller->getSettingsLinkText());
+        parent::tearDown();
     }
 
     public function testGetSettingsHeadline()

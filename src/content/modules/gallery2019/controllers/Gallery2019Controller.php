@@ -10,19 +10,15 @@ class Gallery2019Controller extends Controller
 
     public function uninstall(): void
     {
+        $migrationDirectory = ModuleHelper::buildModuleRessourcePath(
+            self::MODULE_NAME,
+            "sql/down"
+        );
         $migrator = new DBMigrator(
-            "module/{self::MODULE_NAME}",
-            ModuleHelper::buildModuleRessourcePath(
-                    self::MODULE_NAME,
-                    "sql/down"
-                )
+            "module/" . self::MODULE_NAME,
+            $migrationDirectory
         );
         $migrator->rollback();
-    }
-
-    public function getSettingsLinkText(): string
-    {
-        return get_translation("edit");
     }
 
     public function getSettingsHeadline(): string
