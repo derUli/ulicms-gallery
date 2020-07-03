@@ -203,4 +203,9 @@ class Gallery extends Model
         }
         return $result;
     }
+    
+    public function getShortcode(): ?string
+    {
+        return $this->isPersistent() ?  "[gallery={$this->getID()}]" : null;
+    }
 }

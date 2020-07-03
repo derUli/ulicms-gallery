@@ -147,4 +147,17 @@ class GalleryModelTest extends Gallery2019BaseTest
         $gallery = new Gallery();
         $gallery->addImage(new Image());
     }
+
+    public function testGetShortcodeReturnsString()
+    {
+        $gallery = new Gallery();
+        $gallery->setID(123);
+        $this->assertEquals("[gallery=123]", $gallery->getShortcode());
+    }
+
+    public function testGetShortcodeReturnsNull()
+    {
+        $gallery = new Gallery();
+        $this->assertNull($gallery->getShortcode());
+    }
 }
