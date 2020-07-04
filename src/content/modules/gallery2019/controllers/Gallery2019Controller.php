@@ -26,6 +26,15 @@ class Gallery2019Controller extends Controller
         return get_translation("galleries");
     }
 
+    public function adminHeadStylesFilter($styles)
+    {
+        $styles[] = ModuleHelper::buildModuleRessourcePath(
+            self::MODULE_NAME,
+            "css/admin.scss"
+        );
+        return $styles;
+    }
+
     public function settings(): string
     {
         return Template::executeModuleTemplate(self::MODULE_NAME, "gallery/list.php");

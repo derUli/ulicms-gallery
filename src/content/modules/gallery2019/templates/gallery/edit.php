@@ -37,10 +37,12 @@ if ($id and $model->getID()) {
             class="btn btn-default"><i class="fa fa-plus"></i> <?php translate("add_image"); ?></a>
     </p>
 
-    <table class="tablesorter">
+    <table class="tablesorter gallery-table">
         <thead>
             <tr>
-                <th><?php translate("position"); ?></th>
+                <th class="position-row">
+                    <?php translate("position"); ?>
+                </th>
                 <th><?php translate("image"); ?></th>
                 <th><?php translate("description"); ?></th>
                 <td></td>
@@ -57,8 +59,8 @@ if ($id and $model->getID()) {
                             src="<?php
                             esc(
         ModuleHelper::getBaseUrl(
-                                        "/../{$image->getPath()}"
-                                    )
+            "/../{$image->getPath()}"
+        )
     );
                             ?>"
                             title="<?php esc($image->getPath()); ?>">

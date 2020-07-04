@@ -28,6 +28,7 @@ class Gallery2019ControllerTest extends Gallery2019BaseTest
         $_SESSION = [];
         parent::tearDown();
     }
+    
 
     public function testGetSettingsHeadline()
     {

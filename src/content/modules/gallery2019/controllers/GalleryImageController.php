@@ -82,7 +82,8 @@ class GalleryImageController extends Controller
     {
         $id = Request::getVar("id", 0, "int");
 
-        $model = new Image($id);+
+        $model = new Image($id);
+        +
         $gallery_id = $model->getGalleryId();
 
         $deleted = $this->_delete();
