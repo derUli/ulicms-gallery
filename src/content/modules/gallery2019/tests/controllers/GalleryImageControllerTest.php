@@ -91,4 +91,11 @@ class GalleryImageControllerTest extends Gallery2019BaseTest
 
         $this->assertFalse($controller->_delete());
     }
+    public function testDeleteThrowsException()
+    {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("No id set");
+        $controller = new GalleryImageController();
+        $controller->_delete();
+    }
 }

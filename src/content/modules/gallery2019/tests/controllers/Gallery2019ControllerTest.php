@@ -28,7 +28,6 @@ class Gallery2019ControllerTest extends Gallery2019BaseTest
         $_SESSION = [];
         parent::tearDown();
     }
-    
 
     public function testGetSettingsHeadline()
     {
@@ -65,5 +64,18 @@ class Gallery2019ControllerTest extends Gallery2019BaseTest
         $controller = new Gallery2019Controller();
         $input = "<div>Foo</div>";
         $this->assertEquals($input, $controller->contentFilter($input));
+    }
+
+    public function testAdminHeadStylesFilter()
+    {
+        $controller = new Gallery2019Controller();
+        $styles = ["foo", "bar"];
+        $filteredStyles = $controller->adminHeadStylesFilter($styles);
+
+        $this->assertCount(3, $filteredStyles);
+        $this->assertStringEndsWith(
+            "gallery2019/css/admin.scss",
+            $filteredStyles[2]
+        );
     }
 }

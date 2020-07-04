@@ -12,6 +12,18 @@ class GalleryImageController extends Controller
     {
         $gallery_id = Request::getVar("gallery_id", null, "int");
         
+        $path = Request::getVar("path");
+        
+        if (!$gallery_id or StringHelper::isNullOrWhitespace($path)) {
+            ExceptionResult(get_translation("fill_all_fields"));
+        }
+        
+        $gallery = new Gallery($gallery_id);
+        if (!$gallery->getID()) {
+            ExceptionResult("No gallery with id {$gallery_id}");
+        }
+
+        
         $id = $this->_createPost();
         Response::redirect(
             ModuleHelper::buildActionURL(
@@ -28,14 +40,8 @@ class GalleryImageController extends Controller
         $description = Request::getVar("description", "", "str");
         $order = Request::getVar("position", 0, "int");
 
-        if (!$gallery_id or StringHelper::isNullOrWhitespace($path)) {
-            ExceptionResult(get_translation("fill_all_fields"));
-        }
         $gallery = new Gallery($gallery_id);
-        if (!$gallery->getID()) {
-            ExceptionResult("No gallery with id {$gallery_id}");
-        }
-
+        
         $image = new Image();
         $image->setPath($path);
         $image->setDescription($description);
@@ -49,27 +55,26 @@ class GalleryImageController extends Controller
     public function editPost(): void
     {
         $gallery_id = Request::getVar("gallery_id", null, "int");
+        $path = Request::getVar("path");
+        
+        if (!$gallery_id or StringHelper::isNullOrWhitespace($path)) {
+            ExceptionResult(get_translation("fill_all_fields"));
+        }
+        
         $this->_editPost();
 
         Response::redirect(ModuleHelper::buildActionURL("gallery_edit", "id={$gallery_id}"));
     }
-    
+
     public function _editPost(): ?Image
     {
-        $gallery_id = Request::getVar("gallery_id", null, "int");
         $id = Request::getVar("id", null, "int");
 
         $image = new Image($id);
-        if (!$id && !$image->getID()) {
-            ExceptionResult("No image with id {$id}");
-        }
+        
         $path = Request::getVar("path");
         $description = Request::getVar("description", "", "str");
         $order = Request::getVar("position", 0, "int");
-
-        if (!$gallery_id or StringHelper::isNullOrWhitespace($path)) {
-            ExceptionResult(get_translation("fill_all_fields"));
-        }
 
         $image->setPath($path);
         $image->setDescription($description);
@@ -84,7 +89,7 @@ class GalleryImageController extends Controller
 
         $model = new Image($id);
         +
-        $gallery_id = $model->getGalleryId();
+                $gallery_id = $model->getGalleryId();
 
         $deleted = $this->_delete();
         if ($deleted) {
