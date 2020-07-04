@@ -81,7 +81,9 @@ class GalleryImageController extends Controller
     public function delete(): void
     {
         $id = Request::getVar("id", 0, "int");
-        $gallery_id = Request::getVar("gallery_id", 0, "int");
+
+        $model = new Image($id);+
+        $gallery_id = $model->getGalleryId();
 
         $deleted = $this->_delete();
         if ($deleted) {
@@ -92,7 +94,7 @@ class GalleryImageController extends Controller
                 )
             );
         } else {
-            throw new FileNotFoundException("No gallery with id {$id}");
+            throw new FileNotFoundException("No image with id {$id}");
         }
     }
 
